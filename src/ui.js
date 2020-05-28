@@ -1,6 +1,6 @@
 class UI {
   constructor() {
-    this.post = document.querySelector(".posts");
+    this.post = document.querySelector("#posts");
     this.titleInput = document.querySelector("#title");
     this.bodyInput = document.querySelector("#body");
     this.idInput = document.querySelector("#id");
@@ -29,6 +29,42 @@ class UI {
     });
 
     this.post.innerHTML = output;
+  }
+
+  showAlert(message, className) {
+    this.clearAlert();
+
+    //CREATE DIV
+    const div = document.createElement("div");
+    //Add classes
+    div.className = className;
+    //ADD text
+    div.appendChild(document.createTextNode(message));
+
+    //Get Parent
+    const container = document.querySelector(".postsContainer");
+
+    //GET posts
+    const posts = document.querySelector("#posts");
+
+    container.insertBefore(div, posts);
+
+    //TIMEOUT
+    setTimeout(() => {
+      this.clearAlert();
+    }, 3000);
+  }
+
+  clearAlert() {
+    const currentAlert = document.querySelector(".alert");
+    if (currentAlert) {
+      currentAlert.remove();
+    }
+  }
+
+  clearFields() {
+    this.titleInput.value = "";
+    this.bodyInput.value = "";
   }
 }
 
