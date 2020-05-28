@@ -9,6 +9,11 @@
       "title": "Hello World Nyan",
       "body": "ynan good one!",
       "id": 6
+    },
+    {
+      "title": "Update Post",
+      "body": "create new post content",
+      "id": 7
     }
   ]
 }

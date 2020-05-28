@@ -66,6 +66,47 @@ class UI {
     this.titleInput.value = "";
     this.bodyInput.value = "";
   }
+
+  clearIdInput() {
+    this.idInput.value = "";
+  }
+
+  fillForm(data) {
+    this.titleInput.value = data.title;
+    this.bodyInput.value = data.body;
+    this.idInput.value = data.id;
+
+    this.changeFormState("edit");
+  }
+
+  changeFormState(type) {
+    if (type === "edit") {
+      this.postSubmit.textContent = "Update Post";
+      this.postSubmit.className = "post-submit btn btn-warning btn-block";
+
+      if (!document.querySelector(".post-cancel")) {
+        //create cancel btn
+        const button = document.createElement("button");
+        button.className = "post-cancel btn btn-light btn-block";
+        button.appendChild(document.createTextNode("Cancel Edit"));
+
+        //Get parent
+        const container = document.querySelector(".card-form");
+        const formEnd = document.querySelector(".form-end");
+        container.insertBefore(button, formEnd);
+      }
+    } else {
+      this.postSubmit.textContent = "Post It";
+      this.postSubmit.className = "post-submit btn btn-primary btn-block";
+
+      if (document.querySelector(".post-cancel")) {
+        document.querySelector(".post-cancel").remove();
+      }
+
+      this.clearIdInput();
+      this.clearFields();
+    }
+  }
 }
 
 export const ui = new UI();
